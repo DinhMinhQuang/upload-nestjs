@@ -11,11 +11,19 @@ import { HttpExceptionFilter } from './common/filter/http-exception.filter';
 import { AllExceptionsFilter } from './common/filter/all-exception.filter';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { LoggingInterceptor } from './common/interceptor/logging.interceptor';
+import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
 // import { LoggerMiddleware } from './common/middleware/logger.middleware';
 // import { CatsController } from './cats/cats.controller';
 
 @Module({
-  imports: [CatsModule],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    CatsModule,
+    AuthModule,
+  ],
   controllers: [AppController],
   providers: [
     AppService,
