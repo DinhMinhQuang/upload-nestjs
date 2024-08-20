@@ -56,7 +56,7 @@ export class CatsController {
   // @UseFilters(HttpExceptionFilter)
   async findAll(): Promise<Cat[]> {
     try {
-      const array = await this.catsService.findAll();
+      const array = this.catsService.findAll();
       return array;
     } catch (error) {
       throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);

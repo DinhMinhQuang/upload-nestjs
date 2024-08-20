@@ -10,7 +10,6 @@ export class CatsService {
   }
 
   findAll(): Cat[] {
-    // throw new Error('Method not implemented.');
     return this.cats;
   }
 
