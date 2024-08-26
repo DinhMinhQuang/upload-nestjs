@@ -75,7 +75,13 @@ export class CatsController {
   ): Promise<any> {
     const id = randomUUID();
     createCatDto.id = id;
-    this.catsService.create(createCatDto);
+    const create = await this.catsService.create(createCatDto);
+    console.log(create, 'create');
+    if (!create) {
+      res
+        .status(HttpStatus.OK)
+        .send({ code: -1, message: 'Failed', data: create });
+    }
     res
       .status(HttpStatus.CREATED)
       .send({ code: 1, message: 'Succeeded', data: createCatDto });

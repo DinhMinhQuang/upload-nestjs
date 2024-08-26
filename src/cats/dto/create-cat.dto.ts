@@ -9,7 +9,7 @@ export class CreateCatDto {
 }
 
 export const createCatSchema = z.object({
-  name: z.string(),
+  name: z.string().nullish(),
   age: z.number().int(),
   breed: z.string().min(1),
 });

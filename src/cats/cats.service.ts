@@ -1,12 +1,18 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Cat } from './interfaces/cat.interface';
 import { UUID } from 'crypto';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class CatsService {
   private readonly cats: Cat[] = [];
-  create(cat: Cat) {
-    this.cats.push(cat);
+  constructor(@InjectModel(Cat.name) private catModel: Model<Cat>) {}
+
+  async create(cat: Cat) {
+    const createdCat = new this.catModel(cat);
+    const create = await createdCat.save();
+    return create;
   }
 
   findAll(): Cat[] {

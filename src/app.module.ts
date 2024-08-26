@@ -14,6 +14,7 @@ import { LoggingInterceptor } from './common/interceptor/logging.interceptor';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import configuration from './config/configuration';
+import { MongooseModule } from '@nestjs/mongoose';
 // import { LoggerMiddleware } from './common/middleware/logger.middleware';
 // import { CatsController } from './cats/cats.controller';
 
@@ -23,6 +24,7 @@ import configuration from './config/configuration';
       load: [configuration],
       // isGlobal: true,
     }),
+    MongooseModule.forRoot('mongodb://localhost/nest'),
     CatsModule,
     AuthModule,
   ],
