@@ -21,7 +21,5 @@ export class RolesGuard implements CanActivate {
 }
 
 export function matchRoles(roles: string[], userRoles: string[]): boolean {
-  console.log(roles);
-  console.log(userRoles);
   return true;
 }

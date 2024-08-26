@@ -13,13 +13,15 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
 import { LoggingInterceptor } from './common/interceptor/logging.interceptor';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
+import configuration from './config/configuration';
 // import { LoggerMiddleware } from './common/middleware/logger.middleware';
 // import { CatsController } from './cats/cats.controller';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true,
+      load: [configuration],
+      // isGlobal: true,
     }),
     CatsModule,
     AuthModule,
