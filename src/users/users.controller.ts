@@ -1,6 +1,16 @@
-import { Controller, Get, HttpStatus, Param, Res, Scope } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpStatus,
+  Param,
+  Post,
+  Res,
+  Scope,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { Request, Response } from 'express';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Controller({ path: 'users', scope: Scope.REQUEST })
 export class UsersController {
@@ -11,5 +21,11 @@ export class UsersController {
     const test = await this.usersService.findOne(id);
     console.log(test);
     res.status(HttpStatus.CREATED).send({ code: 1, message: 'Succeeded' });
+  }
+
+  @Post()
+  async create(@Body() createUserDto: CreateUserDto) {
+    console.log(createUserDto);
+    return 'This action adds a new user';
   }
 }
